@@ -12,7 +12,7 @@ class Node {
 		$this->sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
 		if (!$this->sock) throw new Exception($errstr, $errno);
 
-		$this->myself = pack('NN', mt_rand(0,0xffffffff), mt_rand(0, 0xffffffff));
+		$this->myself = pack('NN', mt_rand(0,0x7fffffff), mt_rand(0, 0x7fffffff));
 
 		// send "version" packet
 		$pkt = $this->_makeVersionPacket(31900); // 0.3.19
