@@ -2,24 +2,24 @@
 
 /*
 $CONFIG['MYSQL_HOST']			 = "localhost";
-$CONFIG['MYSQL_USER']			 = "bitcoin";
+$CONFIG['MYSQL_USER']			 = "litecoin";
 $CONFIG['MYSQL_PASS']			 = "pass";
-$CONFIG['MYSQL_BITCOIN_DB']		 = "bitcoin";
+$CONFIG['MYSQL_BITCOIN_DB']		 = "litecoin";
 $CONFIG['MYSQL_BITCOIN_TABLE']		 = "nodes";
 $CONFIG['MYSQL_PDNS_DB']		 = "powerdns";
 $CONFIG['MYSQL_PDNS_RECORDS_TABLE']	 = "records";
 $CONFIG['PDNS_DOMAIN_ID']		 = "2";
 */
 
-$CONFIG['SQLITE_FILE']			 = "bitcoin.sqlite";
-$CONFIG['BIND_HEADER_FILE']		 = "./db.dnsseed.bitcoin.bit.header";
-$CONFIG['BIND_RECORD_FILE']		 = "./db.dnsseed.bitcoin.bit";
+$CONFIG['SQLITE_FILE']			 = "litecoin.sqlite";
+$CONFIG['BIND_HEADER_FILE']		 = "./db.dnsseed.litecoin.bit.header";
+$CONFIG['BIND_RECORD_FILE']		 = "./db.dnsseed.litecoin.bit";
 
-$CONFIG['DOMAIN_NAME']			 = "dnsseed.bitcoin.bit";
+$CONFIG['DOMAIN_NAME']			 = "dnsseed.litecoin.bit";
 $CONFIG['RECORD_TTL']			 = "60";
 
 // The minimum version to be added to the DNS database
-$CONFIG['MIN_VERSION']			 = 32400; // 0.3.24
+$CONFIG['MIN_VERSION']			 = 50000; // 0.5.0
 // Timeout to connect to nodes
 $CONFIG['CONNECT_TIMEOUT']		 = 2;
 // Rate at which nodes which do not accept incoming connections are rechecked (seconds)

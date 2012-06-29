@@ -46,7 +46,7 @@ function add_node_to_dns($ip, $port, $version) {
 			."WHERE `ipv4` = '" . ip2long($ip) . "' AND `port` = '" . $port . "';");
 	}
 
-	if (!empty($ip) && ip2long($ip) != 0 && $version >= $CONFIG['MIN_VERSION'] && $port == 8333)
+	if (!empty($ip) && ip2long($ip) != 0 && $version >= $CONFIG['MIN_VERSION'] && $port == 9333)
 		$db->query("INSERT INTO `".$CONFIG['MYSQL_PDNS_DB']."`.`".$CONFIG['MYSQL_PDNS_RECORDS_TABLE']."` "
 			."(`domain_id`, `name`, `type`, `content`, `ttl`, `prio`, `change_date`) VALUES "
 			."('" . $CONFIG['PDNS_DOMAIN_ID'] . "', '" . $CONFIG['DOMAIN_NAME'] . "', 'A', '" . $ip . "', '" . $CONFIG['PDNS_RECORD_TTL'] . "', '0', '" . date("Ymd") . "00');");
@@ -137,7 +137,7 @@ function connect_to_db() {
 	$db->busyTimeout(5000);
 	$db->exec("CREATE TABLE IF NOT EXISTS nodes (
 			ipv4 INT NOT NULL,
-			port INT NOT NULL DEFAULT 8333,
+			port INT NOT NULL DEFAULT 9333,
 			last_check INT DEFAULT NULL,
 			accepts_incoming INT NOT NULL DEFAULT 0,
 			version INT DEFAULT NULL,
@@ -280,18 +280,18 @@ function prune_nodes() {
 // Functions used only by fill-dns.php
 function get_list_of_nodes_for_dns() {
 	global $db, $CONFIG;
-	return $db->query("SELECT ipv4 FROM nodes WHERE accepts_incoming = 1 AND port = 8333 AND version >= ".$CONFIG['MIN_VERSION']." ORDER BY last_check DESC LIMIT 20;");
+	return $db->query("SELECT ipv4 FROM nodes WHERE accepts_incoming = 1 AND port = 9333 AND version >= ".$CONFIG['MIN_VERSION']." ORDER BY last_check DESC LIMIT 20;");
 }
 
 // Functions used only by count-nodes.php
 function query_version_count() {
 	global $db, $CONFIG;
-	return $db->query("SELECT COUNT(*), version FROM nodes WHERE accepts_incoming = 1 AND port = 8333 GROUP BY version ORDER BY version;");
+	return $db->query("SELECT COUNT(*), version FROM nodes WHERE accepts_incoming = 1 AND port = 9333 GROUP BY version ORDER BY version;");
 }
 
 function query_dns_total() {
 	global $db, $CONFIG;
-	return $db->query("SELECT COUNT(*) FROM nodes WHERE accepts_incoming = 1 AND port = 8333 AND version >= ".$CONFIG['MIN_VERSION'].";");
+	return $db->query("SELECT COUNT(*) FROM nodes WHERE accepts_incoming = 1 AND port = 9333 AND version >= ".$CONFIG['MIN_VERSION'].";");
 }
 
 function query_total() {
