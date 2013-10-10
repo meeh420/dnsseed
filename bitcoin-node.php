@@ -8,7 +8,7 @@ class Node {
 	private $myself;
 	private $queue = array();
 
-	public function __construct($ip, $port = 9333, $timeout = 5) {
+	public function __construct($ip, $port = 9377, $timeout = 5) {
 		$this->sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
 		if (!$this->sock) throw new Exception($errstr, $errno);
 
@@ -116,7 +116,7 @@ class Node {
 		$data = fread($this->sock, 20);
 		if (!$data) throw new Exception('Failed to read from peer');
 		if (strlen($data) != 20) throw new Exception('unexpected fragmentation');
-		if (substr($data, 0, 4) != "\xfb\xc0\xb6\xdb") throw new Exception('Corrupted stream');
+		if (substr($data, 0, 4) != "\xfa\xca\xba\xda") throw new Exception('Corrupted stream');
 		$type = substr($data, 4, 12);
 		$type_pos = strpos($type, "\0");
 		if ($type_pos !== false) $type = substr($type, 0, $type_pos);
@@ -180,7 +180,7 @@ class Node {
 	}
 
 	protected function _makePacket($type, $data) {
-		$packet = "\xfb\xc0\xb6\xdb"; // magic header
+		$packet = "\xfa\xca\xba\xda"; // magic header
 		$packet .= $type . str_repeat("\0", 12-strlen($type));
 		$packet .= pack('V', strlen($data));
 		if ((!is_null($data)) && ($this->version > 0x209 || $this->version == 0)) $packet .= $this->_checksum($data);

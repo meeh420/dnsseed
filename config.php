@@ -11,17 +11,17 @@ $CONFIG['MYSQL_PDNS_RECORDS_TABLE']	 = "records";
 $CONFIG['PDNS_DOMAIN_ID']		 = "2";
 */
 
-$CONFIG['SQLITE_FILE']			 = "litecoin.sqlite";
-$CONFIG['BIND_HEADER_FILE']		 = "./db.dnsseed.litecoin.bit.header";
-$CONFIG['BIND_RECORD_FILE']		 = "./db.dnsseed.litecoin.bit";
+$CONFIG['SQLITE_FILE']			 = "anoncoin.sqlite";
+$CONFIG['BIND_HEADER_FILE']		 = "./db.dnsseed.anoncoin.bit.header";
+$CONFIG['BIND_RECORD_FILE']		 = "./db.dnsseed.anoncoin.bit";
 
-$CONFIG['DOMAIN_NAME']			 = "dnsseed.litecoin.bit";
+$CONFIG['DOMAIN_NAME']			 = "anoncoin.net";
 $CONFIG['RECORD_TTL']			 = "60";
 
 // The minimum version to be added to the DNS database
 $CONFIG['MIN_VERSION']			 = 50000; // 0.5.0
 // Timeout to connect to nodes
-$CONFIG['CONNECT_TIMEOUT']		 = 2;
+$CONFIG['CONNECT_TIMEOUT']		 = 7;
 // Rate at which nodes which do not accept incoming connections are rechecked (seconds)
 $CONFIG['UNACCEP_CHECK_RATE']		 = 36 * 60 * 60;
 // Minimum age of nodes before they will be rechecked if they go down
